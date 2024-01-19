@@ -4,6 +4,8 @@ name: Deploy
 on:
   push:
     branches: [ master ]
+permissions:
+  contents: write
 # 執行的工作
 jobs:
   # 工作名稱
@@ -22,7 +24,7 @@ jobs:
           npm install
           npm run build
         env:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          VITE_API: ${{ secrets.VITE_API }}
       # 步驟三：部署
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
